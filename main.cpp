@@ -1,28 +1,26 @@
 #include <iostream>
-using namespace std;
-#include "header.h"
 #include "release.cpp"
+using namespace std;
 
 int main() {
-  matrix pepe;
+  matrix Matrix;
   float m[4][4];
-  cout << "Enter matrix m[4][4]:" << endl;
-  for (int i=0;i<4;i++) {
-    for (int j=0;j<4;j++) {
-      cout << "m[" << i << "][" << j << "]: ";
-      cin >> m[i][j];
+  while (1) {
+    int x;
+    cout << "Enter the punct of menu:" << endl;
+    cout << "1\tEnter the Matrix 4x4" << endl;
+    cout << "2\tChange element of Matrix" << endl;
+    cout << "3\tGet Transposed Matrix" << endl;
+    cout << "4\tMultiplicate Matrix" << endl;
+    cout << "5\tExit" << endl;
+    cout << "Punct: ";
+    cin >> x;
+    switch (x) {
+      case 1: m[4][4] = Matrix.SetMatrix(m);
+      case 2: m[4][4] = Matrix.SetElem(m);
+      case 3: m[4][4] = Matrix.GetTrans(m);
+      case 4: m[4][4] = Matrix.GetMult(m);
+      case 5: return 0;
     }
   }
-  cout << "Matrix:" << endl;
-  for (int i=0;i<4;i++) {
-    for (int j=0;j<4;j++) {
-      cout << m[i][j] << "\t";
-    }
-    cout << endl;
-  }
-  trans_m(m);
-  mult_m(m);
-  pepe.getPepe();
-  return 0;
 }
-//тут должно быть меню с вызовами методов, хэдер должен вызываться только в релизе

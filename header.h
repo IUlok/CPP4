@@ -8,9 +8,9 @@ float trans_m (float m1[4][4]) {
   cout << "Transposed matrix:" << endl;
   for (int i=0;i<4;i++) {
     for (int j=0;j<4;j++) {
-      std::cout << m2[i][j] << "\t";
+      cout << m2[i][j] << "\t";
     }
-    std::cout << std::endl;
+    cout << endl;
   }
   return 0;
 }
@@ -28,9 +28,9 @@ float mult_m (float m1[4][4]) {
   cout << "Multiplicated matrix:" << endl;
   for (int i=0;i<4;i++) {
     for (int j=0;j<4;j++) {
-      std::cout << m2[i][j] << "\t";
+      cout << m2[i][j] << "\t";
     }
-    std::cout << std::endl;
+    cout << endl;
   }
   return 0;
 }
