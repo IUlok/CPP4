@@ -16,10 +16,17 @@ int main() {
     cout << "Punct: ";
     cin >> x;
     switch (x) {
-      case 1: m[4][4] = Matrix.SetMatrix(m);
-      case 2: m[4][4] = Matrix.SetElem(m);
-      case 3: m[4][4] = Matrix.GetTrans(m);
-      case 4: m[4][4] = Matrix.GetMult(m);
+      case 1: {m[4][4] = Matrix.setMatrix(m); break;}
+      case 2: {m[4][4] = Matrix.setElem(m); break;}
+      case 3: {m[4][4] = Matrix.getTrans(m); break;}
+      case 4: {
+        int num;
+        cout << "Enter number for multiplication: " << endl;
+        cout << "Number: ";
+        cin >> num;
+        m[4][4] = Matrix.getMult(m, num); 
+        break;
+      }
       case 5: return 0;
     }
   }

@@ -1,80 +1,73 @@
 #include <iostream>
+#include "header.h"
 using namespace std;
 
 class matrix {
 private:
-
+  float num;
+  int x,y;
+  float m2[4][4];
+  float m1[4][4];
+  float m[4][4];
 public:
-  SetMatrix(float m[4][4]) {
+  matrix() {
+    num=1;
+    x=1;
+    y=1;
+    for (int i=0;i<4;i++) {
+      for (int j=0;j<4;j++) {
+        m[i][j]=1;
+        m1[i][j]=1;
+        m2[i][j]=1;
+      }
+    }
+  }
+  float setMatrix(float m[4][4]) {
     cout << "Enter matrix m[4][4]:" << endl;
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
-        cout << "m[" << i << "][" << j << "]: ";
+        cout << "m[" << (i+1) << "][" << (j+1) << "]: ";
         cin >> m[i][j];
       }
     }
-    cout << "Matrix:" << endl;
-    for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        cout << m[i][j] << "\t";
-      }
-      cout << endl;
-    }
+    displayMatrix(m);
     return m[4][4];
   }
-  SetElem(float m[4][4]) {
-    int x,y;
+  float setElem(float m[4][4]) {
     cout << "Enter element to change: m[x][y]:" << endl;
     cout << "x: ";
     cin >> x;
+    x--;
     cout << "y: ";
     cin >> y;
+    y--;
     cout << "Enter number for change:" << endl;
-    cout << "m[" << x << "][" << y << "]: ";
+    cout << "m[" << (x+1) << "][" << (y+1) << "]: ";
     cin >> m[x][y];
     cout << "Matrix with changes: " << endl;
-    for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        cout << m[i][j] << "\t";
-      }
-      cout << endl;
-    }
+    displayMatrix(m);
     return m[4][4];
   }
-  GetTrans(float m1[4][4]) {
-    float m2[4][4];
+  float getTrans(float m1[4][4]) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
         m2[i][j]=m1[j][i];
       }
     }
     cout << "Transposed matrix:" << endl;
-    for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        cout << m2[i][j] << "\t";
-      }
-      cout << endl;
-    }
+    displayMatrix(m2);
+    cout << "!!! Matrix was back to Untransposed !!!" << endl;
     return m2[4][4];
   }
-  GetMult(float m1[4][4]) {
-    float num;
-    float m2[4][4];
-    cout << "Enter number for multiplication: " << endl;
-    cout << "Number: ";
-    cin >> num;
+  float getMult(float m1[4][4], int num) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
         m2[i][j]=m1[i][j]*num;
       }
     }
     cout << "Multiplicated matrix:" << endl;
-    for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        cout << m2[i][j] << "\t";
-      }
-      cout << endl;
-    }
+    cout << "!!! Matrix was back to Unmultiplicated !!!" << endl;
+    displayMatrix(m2);
     return m2[4][4];
   }
 };
