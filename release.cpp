@@ -2,27 +2,28 @@
 #include "header.h"
 using namespace std;
 
-class matrix {
-private:
-  float num;
-  int x,y;
-  float m2[4][4];
-  float m1[4][4];
-  float m[4][4];
-public:
-  matrix() {
-    num=1;
-    x=1;
-    y=1;
+float displayMatrix(float m[4][4]) {
+  for (int i=0;i<4;i++) {
+    for (int j=0;j<4;j++) {
+      std::cout << m[i][j] << "\t";
+    }
+    std::cout << std::endl;
+  }
+  return 0;
+};
+
+  matrix::matrix()
+  { }
+  matrix::matrix(float m[4][4]) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
-        m[i][j]=1;
-        m1[i][j]=1;
-        m2[i][j]=1;
+        m1[i][j]=m[i][j];
+        m2[i][j]=m[i][j];
       }
     }
+    cout << "Constructor called" << endl;
   }
-  float setMatrix(float m[4][4]) {
+  float matrix::setMatrix(float m[4][4]) {
     cout << "Enter matrix m[4][4]:" << endl;
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
@@ -32,8 +33,8 @@ public:
     }
     displayMatrix(m);
     return m[4][4];
-  }
-  float setElem(float m[4][4]) {
+  };
+  float matrix::setElem(float m[4][4]) {
     cout << "Enter element to change: m[x][y]:" << endl;
     cout << "x: ";
     cin >> x;
@@ -47,8 +48,8 @@ public:
     cout << "Matrix with changes: " << endl;
     displayMatrix(m);
     return m[4][4];
-  }
-  float getTrans(float m1[4][4]) {
+  };
+  float matrix::getTrans(float m1[4][4]) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
         m2[i][j]=m1[j][i];
@@ -58,8 +59,8 @@ public:
     displayMatrix(m2);
     cout << "!!! Matrix was back to Untransposed !!!" << endl;
     return m2[4][4];
-  }
-  float getMult(float m1[4][4], int num) {
+  };
+  float matrix::getMult(float m1[4][4], int num) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
         m2[i][j]=m1[i][j]*num;
@@ -69,5 +70,17 @@ public:
     cout << "!!! Matrix was back to Unmultiplicated !!!" << endl;
     displayMatrix(m2);
     return m2[4][4];
+  };
+
+  matrix::matrix(const matrix &obj) {
+    for (int i=0;i<4;i++) {
+      for (int j=0;j<4;j++) {
+        m[i][j] = obj.m[i][j];
+      }
+    }
+    cout << "Matrix has copied" << endl;
   }
-};
+
+  matrix::~matrix() {
+    cout << "Destructor called" << endl;
+  }
