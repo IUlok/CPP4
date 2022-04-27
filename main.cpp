@@ -4,12 +4,13 @@ using namespace std;
 
 int main() {
   matrix Matrix; //создание объекта
+  matrix *Mat= new matrix;
   float zeroMatrix[4][4]; //создание нулевой матрицы
   for (int i=0;i<4;i++) //заполнение нулевой матрицы
    for (int j=0;j<4;j++)
      zeroMatrix[i][j]=0;
   matrix M(zeroMatrix); //вызов конструктора с параметром
-  Matrix.displayMatrix(); //отображение текущей матрицы
+  Mat->displayMatrix(); //отображение текущей матрицы
   while (1) {
     int x;
     cout << "Enter the punct of menu:" << endl; //меню
@@ -22,15 +23,15 @@ int main() {
     cout << "Punct: ";
     cin >> x;
     switch (x) {
-      case 1: {Matrix.setMatrix(); break;} //заполнение матрицы
-      case 2: {Matrix.setElem(); break;} //замена элемента
-      case 3: {Matrix.getTrans(); break;} //транспонирование
+      case 1: {Mat->setMatrix(); break;} //заполнение матрицы
+      case 2: {Mat->setElem(); break;} //замена элемента
+      case 3: {Mat->getTrans(); break;} //транспонирование
       case 4: {
         int num;
         cout << "Enter number for multiplication: " << endl;
         cout << "Number: ";
         cin >> num;
-        Matrix.getMult(num); //умножение на число
+        Mat->getMult(num); //умножение на число
         break;
       }
       case 5: {
