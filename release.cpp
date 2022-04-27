@@ -84,3 +84,13 @@ void matrix::displayMatrix() {
   matrix::~matrix() { // вызов деструктора
     cout << "Destructor called" << endl;
   }
+
+  ostream& operator<<(ostream &stream, matrix obj) {
+    for (int i=0;i<4;i++) {
+      for (int j=0;j<4;j++) {
+        stream<<obj.m[i][j]<<"  ";
+      }
+      stream<<endl;
+    }
+    return stream; // перегрузка
+  };
