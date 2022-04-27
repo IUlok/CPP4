@@ -1,17 +1,15 @@
-class matrix {
-private:
-  float num;
+class matrix { // описание класса
+private: // описание переменных
   int x,y;
-  float m2[4][4];
-  float m1[4][4];
-  float m[4][4];
-public:
-  matrix();
-  matrix(float m[4][4]);
-  float setMatrix(float m[4][4]);
-  float setElem(float m[4][4]);
-  float getTrans(float m1[4][4]);
-  float getMult(float m1[4][4], int num);
-  matrix(const matrix &obj);
-  ~matrix();
+  float m[4][4]; // создание матрицы
+public: // описание методов
+  matrix(); // конструктор без параметра
+  matrix(float zeroMatrix[4][4]); // конструктор с параметром
+  void displayMatrix(); // ф-ция отображения матрицы
+  void setMatrix(); // ф-ция ввода матрицы
+  void setElem(); // замена элемента
+  void getTrans(); // транспонирование
+  void getMult(int num); // умножение матрицы
+  matrix(const matrix &obj); // конструктор копирования
+  ~matrix(); // деструктор класса
 };

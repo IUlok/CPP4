@@ -1,40 +1,42 @@
-#include <iostream>
 #include "header.h"
 using namespace std;
 
-float displayMatrix(float m[4][4]) {
+void matrix::displayMatrix() {
   for (int i=0;i<4;i++) {
     for (int j=0;j<4;j++) {
-      std::cout << m[i][j] << "\t";
+      cout << m[i][j] << "\t"; // вывод матрицы поэлементно
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  return 0;
 };
 
-  matrix::matrix()
-  { }
-  matrix::matrix(float m[4][4]) {
-    for (int i=0;i<4;i++) {
+  matrix::matrix() {
+    for (int i = 0;i<4;i++) {
       for (int j=0;j<4;j++) {
-        m1[i][j]=m[i][j];
-        m2[i][j]=m[i][j];
+        m[i][j]=0; // заполнение матрицы класса нулями
       }
     }
     cout << "Constructor called" << endl;
   }
-  float matrix::setMatrix(float m[4][4]) {
+  matrix::matrix(float zeroMatrix[4][4]) {
+    for (int i=0;i<4;i++) {
+      for (int j=0;j<4;j++) {
+        m[i][j]=zeroMatrix[i][j]; // присвоение матрице класса значений нулевой матрицы
+      }
+    }
+    cout << "Constructor params called" << endl;
+  }
+  void matrix::setMatrix() {
     cout << "Enter matrix m[4][4]:" << endl;
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
         cout << "m[" << (i+1) << "][" << (j+1) << "]: ";
-        cin >> m[i][j];
+        cin >> m[i][j]; // заполнение матрицы поэлементно
       }
     }
-    displayMatrix(m);
-    return m[4][4];
+    displayMatrix(); // ее отображение
   };
-  float matrix::setElem(float m[4][4]) {
+  void matrix::setElem() { // ф-ция замены  элемента
     cout << "Enter element to change: m[x][y]:" << endl;
     cout << "x: ";
     cin >> x;
@@ -46,41 +48,39 @@ float displayMatrix(float m[4][4]) {
     cout << "m[" << (x+1) << "][" << (y+1) << "]: ";
     cin >> m[x][y];
     cout << "Matrix with changes: " << endl;
-    displayMatrix(m);
-    return m[4][4];
+    displayMatrix(); // отображение матрицы
   };
-  float matrix::getTrans(float m1[4][4]) {
+  void matrix::getTrans() { // транспонирование через третью переменную
+    int a=0;
     for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        m2[i][j]=m1[j][i];
+      for (int j=i;j<4;j++) {
+        a=m[i][j];
+        m[i][j]=m[j][i];
+        m[j][i]=a;
       }
     }
     cout << "Transposed matrix:" << endl;
-    displayMatrix(m2);
+    displayMatrix(); // отображение матрицы
     cout << "!!! Matrix was back to Untransposed !!!" << endl;
-    return m2[4][4];
   };
-  float matrix::getMult(float m1[4][4], int num) {
+  void matrix::getMult(int num) {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
-        m2[i][j]=m1[i][j]*num;
+        m[i][j]=m[i][j]*num; // умножение матрицы поэлементно
       }
     }
     cout << "Multiplicated matrix:" << endl;
     cout << "!!! Matrix was back to Unmultiplicated !!!" << endl;
-    displayMatrix(m2);
-    return m2[4][4];
+    displayMatrix(); // её отображение
   };
 
-  matrix::matrix(const matrix &obj) {
-    for (int i=0;i<4;i++) {
-      for (int j=0;j<4;j++) {
-        m[i][j] = obj.m[i][j];
-      }
-    }
+  matrix::matrix(const matrix &obj) { // ф-ция копирования матрицы
+    for (int i=0;i<4;i++)
+      for (int j=0;j<4;j++)
+        m[i][j] = obj.m[i][j]; // присвоение поэлементно значений м-цы класса значениям м-цы другого класса
     cout << "Matrix has copied" << endl;
   }
 
-  matrix::~matrix() {
+  matrix::~matrix() { // вызов деструктора
     cout << "Destructor called" << endl;
   }
