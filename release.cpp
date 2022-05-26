@@ -48,7 +48,7 @@ using namespace std;
   void matrix::getMatrix() {
     for (int i=0;i<4;i++) {
       for (int j=0;j<4;j++) {
-        cout << m[i][j] << "\t"; // вывод матрицы поэлементно
+        cout << m[i][j] << "\t"; // вывод матрицы поэлементно!
       }
       cout << endl;
     }
